@@ -16,7 +16,7 @@ import ClassSessionsPage from "./pages/student/ClassSessionsPage.jsx"; // ✅ th
 // Teacher pages
 import TeacherClassesPage from "./pages/teacher/TeacherClassesPage.jsx";
 import TeacherLeavePage from "./pages/teacher/TeacherLeavePage.jsx";
-import TeacherSessionsPage from "./pages/teacher/TeacherSessionsPage.jsx";
+import TeacherSessionsPage from "./pages/teacher/TeacherSessionsPage.jsx"; // ✅ đã import
 
 export default function App() {
   return (
@@ -38,7 +38,7 @@ export default function App() {
         }
       />
 
-      {/* ✅ new: sessions theo class */}
+      {/* ✅ sessions theo class */}
       <Route
         path="/student/classes/:classId/sessions"
         element={
@@ -48,7 +48,7 @@ export default function App() {
         }
       />
 
-      {/* ✅ new: xin vắng theo class */}
+      {/* ✅ xin vắng theo class */}
       <Route
         path="/student/classes/:classId/leave"
         element={
@@ -74,6 +74,16 @@ export default function App() {
         element={
           <ProtectedRoute role="teacher">
             <TeacherClassesPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ✅ NEW: teacher sessions theo class (SỬA LỖI BỊ ĐÁ VỀ LOGIN) */}
+      <Route
+        path="/teacher/classes/:classId/sessions"
+        element={
+          <ProtectedRoute role="teacher">
+            <TeacherSessionsPage />
           </ProtectedRoute>
         }
       />
