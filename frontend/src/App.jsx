@@ -11,12 +11,12 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 // Student pages
 import StudentClassesPage from "./pages/student/StudentClassesPage.jsx";
 import StudentLeavePage from "./pages/student/StudentLeavePage.jsx";
-import ClassSessionsPage from "./pages/student/ClassSessionsPage.jsx"; // ✅ thêm
+import ClassSessionsPage from "./pages/student/ClassSessionsPage.jsx";
 
 // Teacher pages
 import TeacherClassesPage from "./pages/teacher/TeacherClassesPage.jsx";
 import TeacherLeavePage from "./pages/teacher/TeacherLeavePage.jsx";
-import TeacherSessionsPage from "./pages/teacher/TeacherSessionsPage.jsx"; // ✅ đã import
+import TeacherSessionsPage from "./pages/teacher/TeacherSessionsPage.jsx";
 
 export default function App() {
   return (
@@ -28,7 +28,7 @@ export default function App() {
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-      {/* STUDENT */}
+      {/* ===================== STUDENT ===================== */}
       <Route
         path="/student/classes"
         element={
@@ -38,7 +38,7 @@ export default function App() {
         }
       />
 
-      {/* ✅ sessions theo class */}
+      {/* sessions theo class */}
       <Route
         path="/student/classes/:classId/sessions"
         element={
@@ -48,7 +48,7 @@ export default function App() {
         }
       />
 
-      {/* ✅ xin vắng theo class */}
+      {/* xin vắng theo class */}
       <Route
         path="/student/classes/:classId/leave"
         element={
@@ -58,7 +58,7 @@ export default function App() {
         }
       />
 
-      {/* (tuỳ chọn) giữ route cũ nếu bạn đang dùng link /student/leave ở chỗ khác */}
+      {/* route cũ (nếu chỗ khác vẫn dùng /student/leave) */}
       <Route
         path="/student/leave"
         element={
@@ -68,7 +68,7 @@ export default function App() {
         }
       />
 
-      {/* TEACHER */}
+      {/* ===================== TEACHER ===================== */}
       <Route
         path="/teacher/classes"
         element={
@@ -78,7 +78,7 @@ export default function App() {
         }
       />
 
-      {/* ✅ NEW: teacher sessions theo class (SỬA LỖI BỊ ĐÁ VỀ LOGIN) */}
+      {/* ✅ Quản lý buổi điểm danh theo class */}
       <Route
         path="/teacher/classes/:classId/sessions"
         element={
@@ -88,6 +88,17 @@ export default function App() {
         }
       />
 
+      {/* ✅ Duyệt đơn vắng theo class */}
+      <Route
+        path="/teacher/classes/:classId/leave"
+        element={
+          <ProtectedRoute role="teacher">
+            <TeacherLeavePage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* route cũ (nếu chỗ khác vẫn dùng /teacher/leave) */}
       <Route
         path="/teacher/leave"
         element={
@@ -97,6 +108,7 @@ export default function App() {
         }
       />
 
+      {/* ===================== 404 ===================== */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
