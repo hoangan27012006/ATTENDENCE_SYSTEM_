@@ -9,7 +9,7 @@
 cd frontend
 npm install
 npm run dev
-```bash
+
 #docker
 docker build -t attendance-fe .
 docker run --rm -p 8080:80 attendance-fe
